@@ -1,0 +1,15 @@
+@import './styles/component/_button.css';
+@import './styles/component/_form.css';
+
+body {
+  font-size: 16px;
+  line-height: 24px;
+  color: #333333;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+  max-width: 100%;
+  padding: 15px;
+  margin: 0 auto;
+}
