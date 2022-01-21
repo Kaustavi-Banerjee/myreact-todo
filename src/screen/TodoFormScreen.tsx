@@ -25,7 +25,7 @@ export default function TodoFormScreen() {
   });
 
   const onSubmit = (text: object) => {
-    dispatch(addItem({text}));
+    dispatch(addItem(text));
     console.log(text);
     reset();
   }
