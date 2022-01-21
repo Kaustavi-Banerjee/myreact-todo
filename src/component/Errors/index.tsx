@@ -1,4 +1,5 @@
 import React from 'react';
+import './ErrorMessage.scoped.css';
 
 export default function ErrorMessage({
   message

@@ -6,7 +6,7 @@ import ErrorMessage from '../component/Errors';
 
 export default function TodoFormScreen() {
   const formSchema = yup.object().shape({
-    text: yup.string().required()
+    text: yup.string().required('This field is required')
   });
 
   const {
