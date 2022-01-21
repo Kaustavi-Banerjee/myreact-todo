@@ -8,7 +8,7 @@ import { RootState } from '../lib/redux-store/store';
 import { addItem } from '../lib/redux-store/reducers/listSlice';
 
 export default function TodoFormScreen() {
-  const list = useSelector((state: RootState) => state.list || []);
+  const list = useSelector((state: RootState) => state.list || [{}]);
   const dispatch = useDispatch();
 
   const formSchema = yup.object().shape({
@@ -43,5 +43,11 @@ export default function TodoFormScreen() {
         Submit
       </button>
     </form>
+
+    {list.map((item, index) => {
+      return (
+        <div key={index}>{item.text}</div>
+      );
+    })}
   </div>;
 }

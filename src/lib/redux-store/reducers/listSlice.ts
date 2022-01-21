@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 export const listSlice = createSlice({
   name: 'listItem',
-  initialState: [{}],
+  initialState: [{id: 0, text: ''}],
   reducers: {
     addItem: (state, action) => {
       const newItem = {
