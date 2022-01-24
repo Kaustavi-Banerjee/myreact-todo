@@ -3,12 +3,12 @@ import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import ErrorMessage from '../component/Errors';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../lib/redux-store/store';
+import { useDispatch } from 'react-redux';
 import { addItem } from '../lib/redux-store/reducers/listSlice';
+import { useNavigate } from "react-router-dom";
 
 export default function TodoFormScreen() {
-  const list = useSelector((state: RootState) => state.list || [{}]);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const formSchema = yup.object().shape({
@@ -28,6 +28,7 @@ export default function TodoFormScreen() {
     dispatch(addItem(text));
     console.log(text);
     reset();
+    navigate("/");
   }
 
   return <div className="container">
@@ -44,10 +45,5 @@ export default function TodoFormScreen() {
       </button>
     </form>
 
-    {list.map((item, index) => {
-      return (
-        <div key={index}>{item.text}</div>
-      );
-    })}
   </div>;
 }

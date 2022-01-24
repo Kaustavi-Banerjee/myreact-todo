@@ -6,7 +6,7 @@ function saveToLocalStorage(state: object) {
     const serialisedState = JSON.stringify(state);
     localStorage.setItem("itemList", serialisedState);
   } catch (e) {
-    console.warn(e);
+    console.log(e);
   }
 }
 
@@ -16,7 +16,7 @@ function loadFromLocalStorage() {
     if (serialisedState === null) return undefined;
     return JSON.parse(serialisedState);
   } catch (e) {
-    console.warn(e);
+    console.log(e);
     return undefined;
   }
 }
