@@ -5,11 +5,12 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import ErrorMessage from '../component/Errors';
 import { useDispatch, useSelector } from 'react-redux';
 import { addItem, editItem } from '../lib/redux-store/reducers/listSlice';
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { RootState } from '../lib/redux-store/store';
 
 export default function TodoFormScreen() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const editTodo = useSelector((state: RootState) => state.list.todoItem);
 
@@ -28,11 +29,18 @@ export default function TodoFormScreen() {
   });
 
   const onSubmit = (text: object) => {
-    if (id) {
-      dispatch(editItem({...text, id}));
-    } else {
-      dispatch(addItem(text));
-      reset();
+    try{
+      if (id) {
+        dispatch(editItem({...text, id}));
+        alert("Item is edited successfully.");
+        navigate("/");
+      } else {
+        dispatch(addItem(text));
+        reset();
+        alert("Item is added to the list");
+      }
+    } catch(error) {
+      alert(error);
     }
   }
 

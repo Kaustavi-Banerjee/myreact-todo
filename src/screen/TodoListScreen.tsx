@@ -10,6 +10,7 @@ export default function TodoListScreen() {
 
   const deleteFn = (id: number) => {
     dispatch(deleteItem(id));
+    alert('Item is deleted successfully.');
   }
 
   return <div className="container">

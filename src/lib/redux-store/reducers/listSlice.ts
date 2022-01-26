@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { Todo } from '../../../interface/Todo.interface';
 
-let itemId: number = 0;
+let itemId: number = 1;
 
 let todo: Todo = {
   todoItem: [{
-    id: 0,
+    id: 1,
     text: 'Abcd Xyz'
   }]
 }
@@ -16,7 +16,7 @@ export const listSlice = createSlice({
   reducers: {
     addItem: (state: Todo, action) => {
       const newItem = {
-        id: ++itemId,
+        id: itemId++,
         text: action.payload.text
       }
       state.todoItem.push(newItem);
@@ -34,7 +34,7 @@ export const listSlice = createSlice({
     },
     deleteItem: (state: Todo, action) => {
       state.todoItem = state.todoItem.filter((item) => 
-        item.id !== action.payload   
+        item.id !== action.payload
       )
     }
   }
