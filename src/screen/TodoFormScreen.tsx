@@ -11,7 +11,7 @@ import { RootState } from '../lib/redux-store/store';
 export default function TodoFormScreen() {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const editTodo = useSelector((state: RootState) => state.list);
+  const editTodo = useSelector((state: RootState) => state.list.todoItem);
 
   const formSchema = yup.object().shape({
     text: yup.string().required('This field is required')
@@ -21,7 +21,6 @@ export default function TodoFormScreen() {
     register,
     handleSubmit,
     reset,
-    getValues,
     setValue,
     formState: { errors }
    } = useForm({
@@ -30,9 +29,7 @@ export default function TodoFormScreen() {
 
   const onSubmit = (text: object) => {
     if (id) {
-      dispatch(editItem(text));
-      // const itm = editTodo.find(item => item.id === +id);
-      getValues("text");
+      dispatch(editItem({...text, id}));
     } else {
       dispatch(addItem(text));
       reset();
@@ -43,7 +40,6 @@ export default function TodoFormScreen() {
     if (id) {
       const items = editTodo.find(item => item.id === +id);
       setValue("text", items?.text);
-      // editTodo.push(items);
     }
   }, [id, editTodo, setValue]);
 
