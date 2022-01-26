@@ -3,8 +3,8 @@ import listReducer from './reducers/listSlice';
 
 function saveToLocalStorage(state: object) {
   try {
-    const serialisedState = JSON.stringify(state);
-    localStorage.setItem("itemList", serialisedState);
+    const storedItem = JSON.stringify(state);
+    localStorage.setItem("itemList", storedItem);
   } catch (e) {
     console.log(e);
   }
@@ -12,12 +12,11 @@ function saveToLocalStorage(state: object) {
 
 function loadFromLocalStorage() {
   try {
-    const serialisedState = localStorage.getItem("itemList");
-    if (serialisedState === null) return undefined;
-    return JSON.parse(serialisedState);
+    const showItem = localStorage.getItem("itemList");
+    if (showItem === null) return undefined;
+    return JSON.parse(showItem);
   } catch (e) {
     console.log(e);
-    return undefined;
   }
 }
 

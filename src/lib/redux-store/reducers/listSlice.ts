@@ -4,7 +4,7 @@ let itemId: number = 0;
 
 export const listSlice = createSlice({
   name: 'listItem',
-  initialState: [{id: 0, text: ''}],
+  initialState: [{id: 0, text: 'Test item'}],
   reducers: {
     addItem: (state, action) => {
       const newItem = {
@@ -12,10 +12,21 @@ export const listSlice = createSlice({
         text: action.payload.text
       }
       state.push(newItem);
+    },
+    editItem: (state, action) => {
+      return state.map((todo) => {
+        if (todo.id === action.payload.id) {
+          return {
+            ...todo,
+            text: action.payload.text
+          }
+        }
+        return todo;
+      })
     }
   }
 });
 
-export const { addItem } = listSlice.actions;
+export const { addItem, editItem } = listSlice.actions;
 
 export default listSlice.reducer;

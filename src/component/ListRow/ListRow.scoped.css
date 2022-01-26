@@ -1,0 +1,27 @@
+.item-row {
+  max-width: 320px;
+  border-bottom: 1px solid #d8d8d8;
+  padding: 6px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.btn {
+  border-radius: 4px;
+  padding: 4px 6px;
+  margin: 2px 3px;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #ffffff;
+  background-color: #007AFF;
+  cursor: pointer;
+}
+
+.btn-warning {
+  background-color: #D8A31A;
+}
+
+.btn-danger {
+  background-color: #DF4422;
+}
