@@ -18,6 +18,16 @@ export default function Header() {
           Add new item
         </Link>
       </li>
+      <li>
+        <Link to={"/api/list"} className={location.pathname === '/api/list' ? 'active-menu' : ''}>
+          Api list
+        </Link>
+      </li>
+      <li>
+        <Link to={"/api/create"} className={location.pathname === '/api/create' ? 'active-menu' : ''}>
+          Add item with API
+        </Link>
+      </li>
     </ul>
   </div>;
 }
