@@ -5,7 +5,7 @@ import TodoApi from '../lib/api/api';
 import './../component/ListRow/ListRow.scoped.css';
 
 export default function TodoListParseScreen() {
-  const [todoArr, setTodoArr] = useState([]);
+  const [todoArr, setTodoArr] = useState<any[]>([]);
   
   useEffect(() => {
     (async () => {
