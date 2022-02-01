@@ -4,7 +4,6 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import ErrorMessage from '../component/Errors';
 import { useNavigate, useParams } from "react-router-dom";
-//import axios from 'axios';
 import TodoApi from '../lib/api/api';
 
 export default function TodoFormApiScreen() {
@@ -33,10 +32,9 @@ export default function TodoFormApiScreen() {
         alert("Item is edited successfully.");
         navigate("/");
       } else {
-        const data = await TodoApi.post('/classes/Todo', {
+        await TodoApi.post('/classes/Todo', {
           text
         });
-        console.log(data.data);
         reset();
         alert("Item is added to the list");
       }
