@@ -9,11 +9,19 @@ export default function TodoListParseScreen() {
   const [todoArr, setTodoArr] = useState<any[]>([]);
   const navigate = useNavigate();
 
+  async function deleteFn(id: string) {
+    await TodoApi.delete(`/classes/Todo/${id}`)
+    .then(res => {
+      const updatedList = todoArr.filter(item => item.objectId !== id);
+      setTodoArr(updatedList);
+    });
+    alert("Item is deleted.");
+  }
+
   useEffect(() => {
     (async () => {
       const response = await TodoApi.get('/classes/Todo');
       setTodoArr(response.data.results);
-      console.log(response.data.results);
     }) ()
   }, [setTodoArr])
 
@@ -32,7 +40,7 @@ export default function TodoListParseScreen() {
             <button className="btn-warning btn" onClick={() => {navigate(`/api/edit/${i.objectId}`)}}>
               <FiEdit3 />
             </button>
-            <button className="btn-danger btn" onClick={() => { }}>
+            <button className="btn-danger btn" onClick={() => deleteFn(i.objectId)}>
               <RiDeleteBin6Line />
             </button>
           </div>
