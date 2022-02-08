@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -9,9 +9,6 @@ import TodoApi from '../lib/api/api';
 export default function TodoFormApiScreen() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [todos, setTodos] = useState();
-  //const dispatch = useDispatch();
-  //const editTodo = useSelector((state: RootState) => state.list.todoItem);
 
   const formSchema = yup.object().shape({
     text: yup.string().required('This field is required')
@@ -20,6 +17,7 @@ export default function TodoFormApiScreen() {
   const {
     register,
     handleSubmit,
+    setValue,
     reset,
     formState: { errors }
    } = useForm({
@@ -29,8 +27,9 @@ export default function TodoFormApiScreen() {
   const onSubmit = async(text: object) => {
     try{
       if (id) {
+        await TodoApi.put(`/classes/Todo/${id}`, {text});
         alert("Item is edited successfully.");
-        navigate("/");
+        navigate("/api/list");
       } else {
         await TodoApi.post('/classes/Todo', {
           text
@@ -43,7 +42,12 @@ export default function TodoFormApiScreen() {
     }
   }
 
-  
+  useEffect(() => {
+    (async () => {
+      const response = await TodoApi.get(`/classes/Todo/${id}`);
+      setValue("text", response.data.text.text);
+    }) ()
+  }, [id, setValue]);
 
   return <div className="container">
     <form className="todo-form" onSubmit={handleSubmit(onSubmit)}>
