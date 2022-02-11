@@ -1,6 +1,8 @@
 @import './styles/component/_button.css';
 @import './styles/component/_form.css';
 
+@import './styles//component//_common.css';
+
 body {
   font-size: 16px;
   line-height: 24px;
