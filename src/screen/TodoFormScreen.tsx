@@ -33,7 +33,7 @@ export default function TodoFormScreen() {
       if (id) {
         dispatch(editItem({...text, id}));
         alert("Item is edited successfully.");
-        navigate("/");
+        navigate("/list");
       } else {
         dispatch(addItem(text));
         reset();

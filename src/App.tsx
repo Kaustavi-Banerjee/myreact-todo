@@ -6,6 +6,8 @@ import {
 } from "react-router-dom";
 import Header from './component/Header';
 
+const Login = React.lazy(() => import("./screen/LoginScreen"));
+const Register = React.lazy(() => import("./screen/RegisterScreen"));
 const TodoList = React.lazy(() => import("./screen/TodoListScreen"));
 const TodoForm = React.lazy(() => import("./screen/TodoFormScreen"));
 const TodoListApi = React.lazy(() => import("./screen/TodoListParseScreen"));
@@ -19,6 +21,14 @@ function App() {
       
       <Routes>
         <Route path="/" element={
+          <React.Suspense fallback={<>...</>}>
+            <Login />
+          </React.Suspense>} />
+        <Route path="/register" element={
+          <React.Suspense fallback={<>...</>}>
+            <Register />
+          </React.Suspense>} />
+        <Route path="/list" element={
           <React.Suspense fallback={<>...</>}>
             <TodoList />
           </React.Suspense>} />

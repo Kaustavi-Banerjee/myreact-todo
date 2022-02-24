@@ -9,7 +9,7 @@ export default function Header() {
     <div className="logo">App</div>
     <ul className="menus">
       <li>
-        <Link to={"/"} className={location.pathname === '/' ? 'active-menu' : ''}>
+        <Link to={"/list"} className={location.pathname === '/list' ? 'active-menu' : ''}>
           List
         </Link>
       </li>
